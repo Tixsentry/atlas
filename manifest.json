@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Cookie Monitor Extension",
+  "version": "1.0",
+  "permissions": [
+    "cookies",
+    "activeTab",
+    "scripting",
+    "tabs",
+    "http://localhost/*",
+    "https://*.viagogo.com/*",
+    "https://*.ticketmaster.com/*",
+    "https://*.ticketmaster.de/*"
+  ],
+  "host_permissions": [
+    "https://*.viagogo.com/*",
+    "https://*.ticketmaster.de/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
