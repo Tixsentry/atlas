@@ -1,3 +1,5 @@
+let intervals = []
+
 chrome.runtime.onMessage.addListener(async(message, sender, sendResponse) => {
     const { type, cookies, targetDomain: url } = message;
 
@@ -42,6 +44,8 @@ chrome.runtime.onMessage.addListener(async(message, sender, sendResponse) => {
                         }
                     });
                 }, 1000);
+
+                intervals.push(pollForCookie)
             });
         })
     }
@@ -53,6 +57,7 @@ chrome.runtime.onMessage.addListener(async(message, sender, sendResponse) => {
                 type: 'COOKIE_RESPONSE',
                 cookies: results
             });
+
         default:
             return chrome.tabs.sendMessage(sender.tab.id, {
                 type: 'ERROR',

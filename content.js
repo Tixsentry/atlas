@@ -2,7 +2,7 @@
 window.addEventListener('message', (event) => {
     if (event.source !== window) return;
 
-    if (event.data.type === 'MONITOR_COOKIE') {
+    if (event.data.type === 'MONITOR_COOKIE' || event.data.type === 'CANCEL') {
         chrome.runtime.sendMessage(event.data);
     }
 });
